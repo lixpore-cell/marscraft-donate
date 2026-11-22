@@ -57,7 +57,9 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#1a1d26}
     <p><b>2.</b> Переведи сумму сюда:</p>
     <div class="box">
       ЮMoney: <span id="wallet">4100119691968787</span><br>
-      <button type="button" class="copy" onclick="copyText('4100119691968787')">Скопировать номер</button>
+      <button type="button" class="copy" onclick="copyText('4100119691968787')">Скопировать ЮMoney</button><br><br>
+      Билайн: <span id="beeline">+79064462825</span><br>
+      <button type="button" class="copy" onclick="copyText('+79064462825')">Скопировать номер Билайн</button>
     </div>
     <p style="margin-top:10px"><b>В комментарии к переводу напиши:</b> свой ник в игре и название доната.</p>
     <p><b>3.</b> После оплаты напиши админу:</p>
@@ -138,8 +140,9 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#1a1d26}
     <p id="buyText">Товар не выбран</p>
     <p><b>1. Переведи деньги:</b></p>
     <div class="notice" style="margin:8px 0">
-      <div class="box">ЮMoney: 4100119691968787</div>
+      <div class="box">ЮMoney: 4100119691968787<br>Билайн: +79064462825</div>
       <button type="button" class="copy" onclick="copyText('4100119691968787')">Скопировать ЮMoney</button>
+      <button type="button" class="copy" onclick="copyText('+79064462825')">Скопировать Билайн</button>
     </div>
     <p><b>2. В комментарии:</b> ник + название товара</p>
     <p><b>3. Напиши админу:</b></p>
@@ -194,4 +197,4 @@ function copyText(t) {
 }
 </script>
 </body>
-  </html>
+</html>
