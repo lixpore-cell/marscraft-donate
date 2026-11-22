@@ -10,6 +10,11 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#1a1d26}
 .top h1{margin:0 0 4px;font-size:22px}
 .top p{margin:0;opacity:.85;font-size:13px}
 .wrap{max-width:720px;margin:0 auto;padding:12px 12px 90px}
+.notice{background:#fff7ed;border:1px solid #ffd7a8;border-radius:14px;padding:14px;margin:12px 0}
+.notice h3{margin:0 0 8px;font-size:16px;color:#9a3412}
+.notice p{margin:6px 0;line-height:1.45;font-size:14px}
+.notice a{color:#c2410c;font-weight:700}
+.notice .box{background:#fff;border:1px dashed #fdba74;border-radius:10px;padding:10px;margin-top:8px;font-weight:700}
 .tabs{display:flex;gap:8px;margin:12px 0;position:sticky;top:0;background:#f4f6fb;padding:8px 0;z-index:5}
 .tab{flex:1;border:0;background:#fff;border-radius:12px;padding:12px 6px;font-weight:700;font-size:13px;color:#7a8299}
 .tab.on{background:#ff7a1a;color:#fff}
@@ -18,7 +23,7 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#1a1d26}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:420px){.grid{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid #e6eaf2;border-radius:16px;padding:12px}
-.img{height:100px;border-radius:12px;background:#eef2ff;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:8px}
+.img{height:100px;border-radius:12px;background:#eef2ff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin-bottom:8px;color:#334}
 .tag{font-size:11px;color:#7a8299}
 .name{font-weight:800;font-size:16px;margin:4px 0}
 .price{font-weight:800;font-size:18px}
@@ -26,16 +31,15 @@ body{margin:0;font-family:Arial,sans-serif;background:#f4f6fb;color:#1a1d26}
 .sale{display:inline-block;background:#ff4d6d;color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;margin-bottom:6px}
 .btn{width:100%;margin-top:10px;border:0;border-radius:10px;padding:11px;font-weight:800;background:#ff7a1a;color:#fff}
 .cartbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e6eaf2;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;z-index:10}
-.cartbar b{font-size:18px}
+.cartbar b{font-size:16px}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);padding:12px;z-index:20;align-items:flex-end;justify-content:center}
 .modal.on{display:flex}
 .sheet{background:#fff;width:min(560px,100%);border-radius:16px;padding:16px;max-height:85vh;overflow:auto}
 .sheet h2{margin:0 0 8px}
 .sheet ul{margin:8px 0 0;padding-left:18px;line-height:1.5;color:#444}
 .close{float:right;border:0;background:#f1f3f8;width:34px;height:34px;border-radius:10px;font-size:18px}
-input{width:100%;padding:12px;border:1px solid #e6eaf2;border-radius:10px;margin:6px 0;box-sizing:border-box}
-.pay{border:1px solid #e6eaf2;border-radius:12px;padding:12px;margin:6px 0}
-.hint{color:#7a8299;font-size:12px}
+.hint{color:#7a8299;font-size:12px;line-height:1.4}
+.copy{display:inline-block;margin-top:6px;padding:8px 12px;background:#1b2437;color:#fff;border-radius:8px;font-size:13px;border:0;font-weight:700}
 </style>
 </head>
 <body>
@@ -45,193 +49,66 @@ input{width:100%;padding:12px;border:1px solid #e6eaf2;border-radius:10px;margin
 </div>
 
 <div class="wrap">
+
+  <!-- ГЛАВНЫЙ БЛОК: КУДА ПЛАТИТЬ И ПИСАТЬ -->
+  <div class="notice">
+    <h3>Как купить донат</h3>
+    <p><b>1.</b> Выбери товар ниже и нажми «Подробнее» → «Выбрать».</p>
+    <p><b>2.</b> Переведи сумму сюда:</p>
+    <div class="box">
+      ЮMoney: <span id="wallet">4100119691968787</span><br>
+      <button type="button" class="copy" onclick="copyText('4100119691968787')">Скопировать номер</button>
+    </div>
+    <p style="margin-top:10px"><b>В комментарии к переводу напиши:</b> свой ник в игре и название доната.</p>
+    <p><b>3.</b> После оплаты напиши админу:</p>
+    <div class="box">
+      
+      
+      Telegram: <a href="https://t.me/Lixpore">@Lixpore</a>
+    </div>
+    <p class="hint" style="margin-top:8px">В сообщении: ник + что купил + скрин оплаты. Админ выдаст донат на сервере.</p>
+  </div>
+
   <div class="tabs">
     <button type="button" class="tab on" onclick="showTab('currency', this)">Валюта</button>
     <button type="button" class="tab" onclick="showTab('cases', this)">Кейсы</button>
     <button type="button" class="tab" onclick="showTab('donate', this)">Донаты</button>
   </div>
 
-  <!-- ВАЛЮТА -->
   <div class="panel on" id="currency">
     <div class="grid">
-      <div class="card">
-        <div class="sale">-38%</div>
-        <div class="img">50K</div>
-        <div class="tag">ВАЛЮТА</div>
-        <div class="name">50 000 монет</div>
-        <div><span class="price">49 р</span><span class="old">79 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('50 000 монет','49 р',['На баланс сервера','Для /shop и /buyer'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-32%</div>
-        <div class="img">200K</div>
-        <div class="tag">ВАЛЮТА</div>
-        <div class="name">200 000 монет</div>
-        <div><span class="price">149 р</span><span class="old">219 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('200 000 монет','149 р',['Пачка для старта','Выгодно для торговли'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-37%</div>
-        <div class="img">1M</div>
-        <div class="tag">ВАЛЮТА</div>
-        <div class="name">1 000 000 монет</div>
-        <div><span class="price">499 р</span><span class="old">799 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('1 000 000 монет','499 р',['Крупная пачка','Для топ-покупок'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-20%</div>
-        <div class="img">T10</div>
-        <div class="tag">ТОКЕНЫ</div>
-        <div class="name">10 токенов</div>
-        <div><span class="price">79 р</span><span class="old">99 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('10 токенов','79 р',['Донат-валюта','Магазин /tshop'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-25%</div>
-        <div class="img">T50</div>
-        <div class="tag">ТОКЕНЫ</div>
-        <div class="name">50 токенов</div>
-        <div><span class="price">299 р</span><span class="old">399 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('50 токенов','299 р',['Выгодная пачка','Для редких вещей'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-30%</div>
-        <div class="img">T150</div>
-        <div class="tag">ТОКЕНЫ</div>
-        <div class="name">150 токенов</div>
-        <div><span class="price">699 р</span><span class="old">999 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('150 токенов','699 р',['Максимальная пачка','Лучший курс'])">Подробнее</button>
-      </div>
+      <div class="card"><div class="sale">-38%</div><div class="img">50K</div><div class="tag">ВАЛЮТА</div><div class="name">50 000 монет</div><div><span class="price">49 р</span><span class="old">79 р</span></div><button type="button" class="btn" onclick="openInfo('50 000 монет','49 р',['На баланс сервера','Для /shop и /buyer'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-32%</div><div class="img">200K</div><div class="tag">ВАЛЮТА</div><div class="name">200 000 монет</div><div><span class="price">149 р</span><span class="old">219 р</span></div><button type="button" class="btn" onclick="openInfo('200 000 монет','149 р',['Пачка для старта','Выгодно для торговли'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-37%</div><div class="img">1M</div><div class="tag">ВАЛЮТА</div><div class="name">1 000 000 монет</div><div><span class="price">499 р</span><span class="old">799 р</span></div><button type="button" class="btn" onclick="openInfo('1 000 000 монет','499 р',['Крупная пачка','Для топ-покупок'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-20%</div><div class="img">T10</div><div class="tag">ТОКЕНЫ</div><div class="name">10 токенов</div><div><span class="price">79 р</span><span class="old">99 р</span></div><button type="button" class="btn" onclick="openInfo('10 токенов','79 р',['Донат-валюта','Магазин /tshop'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-25%</div><div class="img">T50</div><div class="tag">ТОКЕНЫ</div><div class="name">50 токенов</div><div><span class="price">299 р</span><span class="old">399 р</span></div><button type="button" class="btn" onclick="openInfo('50 токенов','299 р',['Выгодная пачка','Для редких вещей'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-30%</div><div class="img">T150</div><div class="tag">ТОКЕНЫ</div><div class="name">150 токенов</div><div><span class="price">699 р</span><span class="old">999 р</span></div><button type="button" class="btn" onclick="openInfo('150 токенов','699 р',['Максимальная пачка','Лучший курс'])">Подробнее</button></div>
     </div>
   </div>
 
-  <!-- КЕЙСЫ -->
   <div class="panel" id="cases">
     <div class="grid">
-      <div class="card">
-        <div class="sale">-33%</div>
-        <div class="img">R</div>
-        <div class="tag">КЕЙСЫ</div>
-        <div class="name">Кейс ресурсы</div>
-        <div><span class="price">99 р</span><span class="old">149 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Кейс ресурсы','99 р',['Редкие ресурсы','Шанс на крутой лут'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-33%</div>
-        <div class="img">E</div>
-        <div class="tag">КЕЙСЫ</div>
-        <div class="name">Кейс еда</div>
-        <div><span class="price">79 р</span><span class="old">119 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Кейс еда','79 р',['Тотем / яблоки','PvP лут'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-32%</div>
-        <div class="img">A</div>
-        <div class="tag">КЕЙСЫ</div>
-        <div class="name">Кейс броня</div>
-        <div><span class="price">149 р</span><span class="old">219 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Кейс броня','149 р',['Броня и инструменты','Сильные чары'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-33%</div>
-        <div class="img">X</div>
-        <div class="tag">КЕЙСЫ</div>
-        <div class="name">Кейс талисманов</div>
-        <div><span class="price">199 р</span><span class="old">299 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Кейс талисманов','199 р',['Талисманы с эффектами','Редкие награды'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-30%</div>
-        <div class="img">D</div>
-        <div class="tag">ДОНАТ-КЕЙС</div>
-        <div class="name">Донат-кейс</div>
-        <div><span class="price">349 р</span><span class="old">499 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Донат-кейс','349 р',['Шанс выбить донат','Без админ-рангов'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="sale">-33%</div>
-        <div class="img">K</div>
-        <div class="tag">КЛЮЧИ</div>
-        <div class="name">x3 Ключ</div>
-        <div><span class="price">201 р</span><span class="old">299 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('x3 Ключ','201 р',['3 ключа от кейса','Используются в игре'])">Подробнее</button>
-      </div>
+      <div class="card"><div class="sale">-33%</div><div class="img">R</div><div class="tag">КЕЙСЫ</div><div class="name">Кейс ресурсы</div><div><span class="price">99 р</span><span class="old">149 р</span></div><button type="button" class="btn" onclick="openInfo('Кейс ресурсы','99 р',['Редкие ресурсы','Шанс на крутой лут'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-33%</div><div class="img">E</div><div class="tag">КЕЙСЫ</div><div class="name">Кейс еда</div><div><span class="price">79 р</span><span class="old">119 р</span></div><button type="button" class="btn" onclick="openInfo('Кейс еда','79 р',['Тотем / яблоки','PvP лут'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-32%</div><div class="img">A</div><div class="tag">КЕЙСЫ</div><div class="name">Кейс броня</div><div><span class="price">149 р</span><span class="old">219 р</span></div><button type="button" class="btn" onclick="openInfo('Кейс броня','149 р',['Броня и инструменты','Сильные чары'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-33%</div><div class="img">X</div><div class="tag">КЕЙСЫ</div><div class="name">Кейс талисманов</div><div><span class="price">199 р</span><span class="old">299 р</span></div><button type="button" class="btn" onclick="openInfo('Кейс талисманов','199 р',['Талисманы с эффектами'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-30%</div><div class="img">D</div><div class="tag">ДОНАТ-КЕЙС</div><div class="name">Донат-кейс</div><div><span class="price">349 р</span><span class="old">499 р</span></div><button type="button" class="btn" onclick="openInfo('Донат-кейс','349 р',['Шанс выбить донат','Без админ-рангов'])">Подробнее</button></div>
+      <div class="card"><div class="sale">-33%</div><div class="img">K</div><div class="tag">КЛЮЧИ</div><div class="name">x3 Ключ</div><div><span class="price">201 р</span><span class="old">299 р</span></div><button type="button" class="btn" onclick="openInfo('x3 Ключ','201 р',['3 ключа от кейса'])">Подробнее</button></div>
     </div>
   </div>
 
-  <!-- ДОНАТЫ -->
   <div class="panel" id="donate">
     <div class="grid">
-      <div class="card">
-        <div class="img">1</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Космонавт</div>
-        <div><span class="price">49 р</span><span class="old">79 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Космонавт','49 р',['Префикс в чате','Кит /kit kosmonavt','Базовые плюшки'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">2</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Метеор</div>
-        <div><span class="price">99 р</span><span class="old">149 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Метеор','99 р',['Всё из Космонавта','Улучшенный кит'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">3</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Меркурий</div>
-        <div><span class="price">149 р</span><span class="old">199 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Меркурий','149 р',['Всё из Метеора','Сильнее кит'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">4</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Венера</div>
-        <div><span class="price">199 р</span><span class="old">279 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Венера','199 р',['Всё из Меркурия','Красивый префикс'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">5</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Земля</div>
-        <div><span class="price">299 р</span><span class="old">399 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Земля','299 р',['Всё из Венеры','Сильный кит'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">6</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Марс</div>
-        <div><span class="price">399 р</span><span class="old">549 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Марс','399 р',['Всё из Земли','Топ среди средних'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">7</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Юпитер</div>
-        <div><span class="price">499 р</span><span class="old">699 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Юпитер','499 р',['Всё из Марса','Очень сильный кит'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">8</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Сатурн</div>
-        <div><span class="price">699 р</span><span class="old">899 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Сатурн','699 р',['Всё из Юпитера','Премиум-кит'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">9</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Уран</div>
-        <div><span class="price">899 р</span><span class="old">1199 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Уран','899 р',['Всё из Сатурна','Почти максимум'])">Подробнее</button>
-      </div>
-      <div class="card">
-        <div class="img">10</div>
-        <div class="tag">ДОНАТ</div>
-        <div class="name">Нептун</div>
-        <div><span class="price">1199 р</span><span class="old">1599 р</span></div>
-        <button type="button" class="btn" onclick="openInfo('Нептун','1199 р',['Максимальный донат','Лучший кит','Все основные плюшки'])">Подробнее</button>
-      </div>
+      <div class="card"><div class="img">1</div><div class="tag">ДОНАТ</div><div class="name">Космонавт</div><div><span class="price">49 р</span><span class="old">79 р</span></div><button type="button" class="btn" onclick="openInfo('Космонавт','49 р',['Префикс в чате','Кит /kit kosmonavt'])">Подробнее</button></div>
+      <div class="card"><div class="img">2</div><div class="tag">ДОНАТ</div><div class="name">Метеор</div><div><span class="price">99 р</span><span class="old">149 р</span></div><button type="button" class="btn" onclick="openInfo('Метеор','99 р',['Всё из Космонавта','Улучшенный кит'])">Подробнее</button></div>
+      <div class="card"><div class="img">3</div><div class="tag">ДОНАТ</div><div class="name">Меркурий</div><div><span class="price">149 р</span><span class="old">199 р</span></div><button type="button" class="btn" onclick="openInfo('Меркурий','149 р',['Всё из Метеора','Сильнее кит'])">Подробнее</button></div>
+      <div class="card"><div class="img">4</div><div class="tag">ДОНАТ</div><div class="name">Венера</div><div><span class="price">199 р</span><span class="old">279 р</span></div><button type="button" class="btn" onclick="openInfo('Венера','199 р',['Всё из Меркурия','Красивый префикс'])">Подробнее</button></div>
+      <div class="card"><div class="img">5</div><div class="tag">ДОНАТ</div><div class="name">Земля</div><div><span class="price">299 р</span><span class="old">399 р</span></div><button type="button" class="btn" onclick="openInfo('Земля','299 р',['Всё из Венеры','Сильный кит'])">Подробнее</button></div>
+      <div class="card"><div class="img">6</div><div class="tag">ДОНАТ</div><div class="name">Марс</div><div><span class="price">399 р</span><span class="old">549 р</span></div><button type="button" class="btn" onclick="openInfo('Марс','399 р',['Всё из Земли','Топ среди средних'])">Подробнее</button></div>
+      <div class="card"><div class="img">7</div><div class="tag">ДОНАТ</div><div class="name">Юпитер</div><div><span class="price">499 р</span><span class="old">699 р</span></div><button type="button" class="btn" onclick="openInfo('Юпитер','499 р',['Всё из Марса','Очень сильный кит'])">Подробнее</button></div>
+      <div class="card"><div class="img">8</div><div class="tag">ДОНАТ</div><div class="name">Сатурн</div><div><span class="price">699 р</span><span class="old">899 р</span></div><button type="button" class="btn" onclick="openInfo('Сатурн','699 р',['Всё из Юпитера','Премиум-кит'])">Подробнее</button></div>
+      <div class="card"><div class="img">9</div><div class="tag">ДОНАТ</div><div class="name">Уран</div><div><span class="price">899 р</span><span class="old">1199 р</span></div><button type="button" class="btn" onclick="openInfo('Уран','899 р',['Всё из Сатурна','Почти максимум'])">Подробнее</button></div>
+      <div class="card"><div class="img">10</div><div class="tag">ДОНАТ</div><div class="name">Нептун</div><div><span class="price">1199 р</span><span class="old">1599 р</span></div><button type="button" class="btn" onclick="openInfo('Нептун','1199 р',['Максимальный донат','Лучший кит'])">Подробнее</button></div>
     </div>
   </div>
 </div>
@@ -241,7 +118,7 @@ input{width:100%;padding:12px;border:1px solid #e6eaf2;border-radius:10px;margin
     <div class="hint">Выбранный товар</div>
     <b id="sel">ничего</b>
   </div>
-  <button type="button" class="btn" style="width:auto;margin:0;padding:12px 16px" onclick="openBuy()">Купить</button>
+  <button type="button" class="btn" style="width:auto;margin:0;padding:12px 16px" onclick="openBuy()">Как оплатить</button>
 </div>
 
 <div class="modal" id="infoModal">
@@ -257,17 +134,24 @@ input{width:100%;padding:12px;border:1px solid #e6eaf2;border-radius:10px;margin
 <div class="modal" id="buyModal">
   <div class="sheet">
     <button type="button" class="close" onclick="closeModals()">x</button>
-    <h2>Оформление</h2>
+    <h2>Как оплатить</h2>
     <p id="buyText">Товар не выбран</p>
-    <div class="hint">Игровой никнейм</div>
-    <input id="nick" placeholder="Ник в игре" maxlength="16">
-    <div class="hint">Способ оплаты</div>
-    <div class="pay"><b>СБП</b><div class="hint">Банковский перевод</div></div>
-    <div class="pay"><b>Мир / Visa / Mastercard</b><div class="hint">Карта</div></div>
-    <div class="pay"><b>ЮMoney</b><div class="hint">Кошелёк</div></div>
-    <div class="pay"><b>билайн / МТС</b><div class="hint">Мобильный</div></div>
-    <p class="hint">После оплаты напиши админу: ник + товар + скрин. Настоящий автоплатёж — только через кассу (ЮKassa), не через GitHub Pages.</p>
-    <button type="button" class="btn" onclick="finish()">Продолжить</button>
+    <p><b>1. Переведи деньги:</b></p>
+    <div class="notice" style="margin:8px 0">
+      <div class="box">ЮMoney: 4100119691968787</div>
+      <button type="button" class="copy" onclick="copyText('4100119691968787')">Скопировать ЮMoney</button>
+    </div>
+    <p><b>2. В комментарии:</b> ник + название товара</p>
+    <p><b>3. Напиши админу:</b></p>
+    <div class="notice" style="margin:8px 0">
+      <div class="box">
+        
+        
+        Telegram: @Lixpore
+      </div>
+    </div>
+    <p class="hint">Сообщение: ник, товар, скрин оплаты. Админ выдаст донат.</p>
+    <button type="button" class="btn" onclick="closeModals()">Понятно</button>
   </div>
 </div>
 
@@ -297,21 +181,17 @@ function chooseCurrent() {
   closeModals();
 }
 function openBuy() {
-  document.getElementById("buyText").innerHTML = currentName ? (currentName + " — " + currentPrice) : "Товар не выбран";
+  document.getElementById("buyText").innerHTML = currentName ? (currentName + " — " + currentPrice) : "Сначала выбери товар";
   document.getElementById("buyModal").className = "modal on";
 }
 function closeModals() {
   document.getElementById("infoModal").className = "modal";
   document.getElementById("buyModal").className = "modal";
 }
-function finish() {
-  var nick = document.getElementById("nick").value;
-  if (!nick) { alert("Введи ник"); return; }
-  if (!currentName) { alert("Выбери товар"); return; }
-  alert("Заказ: " + currentName + "\nНик: " + nick + "\nЦена: " + currentPrice + "\n\nОплати и напиши админу.");
-  closeModals();
+function copyText(t) {
+  if (navigator.clipboard) navigator.clipboard.writeText(t);
+  alert("Скопировано: " + t);
 }
 </script>
 </body>
-          </html>
-  
+  </html>
